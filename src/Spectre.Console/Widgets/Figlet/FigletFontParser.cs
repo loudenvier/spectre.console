@@ -6,12 +6,7 @@ internal static class FigletFontParser
     {
         var lines = source.SplitLines();
 
-        var headerLine = lines.FirstOrDefault();
-        if (headerLine == null)
-        {
-            throw new InvalidOperationException("Could not read header line");
-        }
-
+        var headerLine = lines.FirstOrDefault() ?? throw new InvalidOperationException("Could not read header line");
         var header = ParseHeader(headerLine);
 
         var index = 32;

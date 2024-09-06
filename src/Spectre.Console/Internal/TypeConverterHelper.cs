@@ -4,12 +4,7 @@ internal static class TypeConverterHelper
 {
     public static string ConvertToString<T>(T input)
     {
-        var result = GetTypeConverter<T>().ConvertToInvariantString(input);
-        if (result == null)
-        {
-            throw new InvalidOperationException("Could not convert input to a string");
-        }
-
+        var result = GetTypeConverter<T>().ConvertToInvariantString(input) ?? throw new InvalidOperationException("Could not convert input to a string");
         return result;
     }
 

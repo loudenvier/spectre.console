@@ -117,12 +117,7 @@ public sealed class MultiSelectionPrompt<T> : IPrompt<List<T>>, IListPromptStrat
     /// <returns>The parent items, or an empty list, if the given item has no parents.</returns>
     public IEnumerable<T> GetParents(T item)
     {
-        var promptItem = Tree.Find(item);
-        if (promptItem == null)
-        {
-            throw new ArgumentOutOfRangeException(nameof(item), "Item not found in tree.");
-        }
-
+        var promptItem = Tree.Find(item) ?? throw new ArgumentOutOfRangeException(nameof(item), "Item not found in tree.");
         var parents = new List<ListPromptItem<T>>();
         while (promptItem.Parent != null)
         {
